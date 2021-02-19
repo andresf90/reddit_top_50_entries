@@ -15,9 +15,16 @@ class InputSearch extends React.Component {
         <div className="m-2">
             <div className="input-group mb-2">
                 <div className="input-group-prepend">
-                    <div className="input-group-text"></div>
+                    <div className="input-group-text searchBarName">Select topic</div>
                 </div>
-                <input type="text" className="form-control" onChange={event => this.search(event.target.value)} value={this.state.term} name="search" placeholder="Topics"/>
+                <select type="text" className="form-control" onChange={event => this.search(event.target.value)} value={this.state.term} name="search" placeholder="Topics">
+                <option value="Design" selected>Design</option>
+                <option value="Ferrari">Ferrari</option>
+                <option value="Lamborghini">Lamborghini</option>
+                <option value="Gamers">Gamers</option>
+
+                </select>
+                <br/>
             </div>
         </div>
     );
