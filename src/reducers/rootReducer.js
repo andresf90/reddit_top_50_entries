@@ -8,8 +8,9 @@
  * All Rights Reserved.
  */
 
-import { createContext } from 'react';
+import { combineReducers } from "redux";
+import simpleReducer from "./simpleReducer";
 
-const GlobalAppContext = createContext(null);
-
-export default GlobalAppContext;
+export default combineReducers({
+  simpleReducer,
+});

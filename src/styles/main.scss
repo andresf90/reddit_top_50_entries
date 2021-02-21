@@ -156,41 +156,6 @@ body {
 }
 
 
-/*----------sidebar background images --------------*/
-
-.sidebar-bg.bg1 .sidebar-wrapper {
-    /*background-image: url(../images/bg1.jpg);*/
-}
-
-.sidebar-bg.bg2 .sidebar-wrapper {
-    background-image: url(../images/bg2.jpg);
-}
-
-.sidebar-bg.bg3 .sidebar-wrapper {
-    background-image: url(../images/bg3.jpg);
-}
-
-.sidebar-bg.bg4 .sidebar-wrapper {
-    background-image: url(../images/bg4.jpg);
-}
-
-
-[data-bg="bg1"] {
-    background-image: url(../images/bg1.jpg);
-}
-
-[data-bg="bg2"] {
-    background-image: url(../images/bg2.jpg);
-}
-
-[data-bg="bg3"] {
-    background-image: url(../images/bg3.jpg);
-}
-
-[data-bg="bg4"] {
-    background-image: url(../images/bg4.jpg);
-}
-
 /*---- border-radius ------*/
 .border-radius-on {
 
@@ -229,4 +194,8 @@ body {
             border-bottom-right-radius: $border-radius;
         }
     }
+}
+
+.padding_menu {
+    padding-top: 10px;
 }
