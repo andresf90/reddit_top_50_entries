@@ -10,15 +10,14 @@
 
 import { connect } from "react-redux";
 
-// Redux
-// import { setFullPost } from "../../actions/simpleActions";
-
 // View
 import SideBar from './view';
 
-/* const mapDispatchToProps = (dispatch) => ({
-  setFullPost: (fullPost) => dispatch(setFullPost(fullPost))
-}); */
+/**
+ * @file indexContent.js
+ * @author Andres Felipe Albarracin Arroyave
+ * @description component sidebar
+ */
 
 export default connect(null, null)(SideBar);
 

@@ -8,6 +8,12 @@
  * All Rights Reserved.
  */
 
+ /**
+ * @file actions/simpleActions.js
+ * @author Andres Felipe Albarracin Arroyave
+ * @description redux actions
+ */
+
 export const simpleAction = () => (dispatch) => {
     dispatch({
       type: "SIMPLE_ACTION",

@@ -10,15 +10,14 @@
 
 import { connect } from "react-redux";
 
-// Redux
-// import { setSelectedPost, deleteListPost } from "../../actions/simpleActions";
-
 // View
 import Post from './view';
 
-/* const mapDispatchToProps = (dispatch) => ({
-  setSelectedPost: (selectedPost) => dispatch(setSelectedPost(selectedPost)),
-  deleteListPost: (deletePost) => dispatch(deleteListPost(deletePost)),
-}); */
+/**
+ * @file Post/index.js
+ * @author Andres Felipe Albarracin Arroyave
+ * @description index component Post
+ */
+
 
 export default connect(null, null)(Post);

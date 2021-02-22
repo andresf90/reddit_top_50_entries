@@ -13,7 +13,11 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import Post from '../Post'
 
-
+/**
+ * @file Posts/view.jsx
+ * @author Andres Felipe Albarracin Arroyave
+ * @description view component posts
+ */
 
 const Posts = ({ posts }) => (
   <ul>
@@ -26,11 +30,7 @@ const Posts = ({ posts }) => (
 
   Posts.propTypes = {
      posts: PropTypes.arrayOf(PropTypes.array).isRequired,
-    // setFullPost: PropTypes.func.isRequired
   }
 
-  /* const mapStateToProps = (state) => ({
-    fullPost: state.simpleReducer.fullPost
-  }); */
 
   export default Posts;

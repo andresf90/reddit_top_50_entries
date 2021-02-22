@@ -8,10 +8,13 @@
  * All Rights Reserved.
  */
 
-
 // View
 import Posts from './view';
 
-
+/**
+ * @file Posts/index.jsx
+ * @author Andres Felipe Albarracin Arroyave
+ * @description index.js component posts
+ */
 
 export default Posts;

@@ -14,7 +14,6 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
-
 // Components
 import InputSearch from '../InputSearch';
 import Posts from '../Posts';
@@ -22,22 +21,17 @@ import Posts from '../Posts';
 // Styles
 import 'react-pro-sidebar/dist/css/styles.css';
 
-
-
 /**
  * @file indexContent.js
  * @author Andres Felipe Albarracin Arroyave
  * @description Main Content Post From Reddit
  */
 
-
  class SideBar extends React.Component {
   constructor(props) {
     super(props);
     this.url = 'https://www.reddit.com/r/';
     this.sorts = ['top'];
-
-   // console.log('props', props)
 
     this.state = {
       currentSubreddit: 'design',
@@ -46,7 +40,6 @@ import 'react-pro-sidebar/dist/css/styles.css';
       before: null,
       page: 1,
       limit: 50,
-      // after: null,
     };
   }
   
@@ -93,10 +86,7 @@ import 'react-pro-sidebar/dist/css/styles.css';
   
   changeSubreddit(sub) {
     const { sort, limit } = this.state;
-    /* 
-      * Empty the files so we will show 'Loading...'
-      * Reset page to 1
-      */
+
     this.setState({
       files: [],
       currentSubreddit: sub,
@@ -108,7 +98,6 @@ import 'react-pro-sidebar/dist/css/styles.css';
     .then((data) => {     
       this.setState({
         files: data.data.children,
-        // after: data.data.after,
         before: data.data.before
       });
       window.scrollTo(0, 0);
@@ -118,10 +107,7 @@ import 'react-pro-sidebar/dist/css/styles.css';
   
   changeSort(sort) {
     const { currentSubreddit } = this.state;
-    /* 
-      * Empty the files so we will show 'Loading...'
-      * Reset page to 1
-      */
+
     this.setState({
       files: [],
       sort,
@@ -132,7 +118,6 @@ import 'react-pro-sidebar/dist/css/styles.css';
     .then((data) => {
       this.setState({
         files: data.data.children,
-        // after: data.data.after,
         before: data.data.before
       });
       window.scrollTo(0, 0);
@@ -158,8 +143,6 @@ import 'react-pro-sidebar/dist/css/styles.css';
   }
 }
 
-
-
 const VisibleSideBar = ({files, searchSubreddit, dispatch }) => {
 
 const updateState = (data) => ({
@@ -167,32 +150,8 @@ const updateState = (data) => ({
     sideBarPosts: data,
 })
 
-
-// const dismissedPost = useSelector(state => state.simpleReducer.sideBarPosts);
-
-
-
- /* const filterArrayByPostId = (filesPost ,arrayData) => {
-  const newArray =  [];
-  filesPost.forEach(element => {
-    // skip every item tahn contains post entries dismissed
-    if(!arrayData.includes(element.data.id)){
-      
-      newArray.push(element);
-      
-    }    
-    return newArray;    
-  });  
-
-} 
-
-filterArrayByPostId(files,['lpi5ut']); */
-
-
-
 dispatch.dispatch(updateState(files));  
 const sideBarPosts = useSelector(state => state.simpleReducer.sideBarPosts);
-
 
 return (
 
@@ -219,11 +178,15 @@ return (
 }
 
 VisibleSideBar.propTypes = {
-  // eslint-disable-next-line react/require-default-props
-  files: PropTypes.PropTypes.func.isRequired,
+  
+  files: PropTypes.PropTypes.shape([]), 
   searchSubreddit: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
+
+VisibleSideBar.defaultProps = {
+  files: []
+}
 
 export default SideBar;
 

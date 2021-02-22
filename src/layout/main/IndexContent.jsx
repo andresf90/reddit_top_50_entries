@@ -23,13 +23,13 @@ import GlobalAppContext from '../../context';
  * @description Main Content Post From Reddit
  */
 
-
-
 const IndexContent = () => {
     const { toggled , setToggled } = useContext(GlobalAppContext);
     const selectedPost = useSelector(state => state.simpleReducer.fullPost);
-   //  const dismissPost = useSelector(state => state.simpleReducer.dismissPost);
-    
+    const addDefaultSrc = (e) => {
+        e.target.src = 'https://b.thumbs.redditmedia.com/N23Zz0q7Dv8hQPOf3ajVZoq4IOpp5jCN_KTo29RyYXM.jpg';
+      }
+
     return ( 
         <div className="container-fluid">
             <div className="row">
@@ -41,7 +41,7 @@ const IndexContent = () => {
                     <h2>{selectedPost && selectedPost.author} </h2>
                     <hr />
                     <br/>
-                    <div className="text-center">{selectedPost && selectedPost.thumbnail && <img src={selectedPost.thumbnail} alt=""/>}</div>
+                    <div className="text-center">{selectedPost && selectedPost.thumbnail && <img onError={addDefaultSrc} src={selectedPost.thumbnail} alt=""/>}</div>
                     <br/>
                     <br/>
                     <br/>
@@ -65,6 +65,5 @@ IndexContent.propTypes = {
 IndexContent.defaultProps = {
     message: {}
 }
-
 
 export default IndexContent;

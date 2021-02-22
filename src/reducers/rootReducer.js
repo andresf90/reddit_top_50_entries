@@ -8,6 +8,12 @@
  * All Rights Reserved.
  */
 
+ /**
+ * @file App.js
+ * @author Andres Felipe Albarracin Arroyave
+ * @description rootReducers.js  
+ */
+
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from 'redux-persist/lib/storage'

@@ -16,6 +16,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 
+/**
+ * @file Post/view.jsx
+ * @author Andres Felipe Albarracin Arroyave
+ * @description view component Post
+ */
+
 const Post = ({ dispatch, post, index }) => {
 
   const updatePost = (data) => ({
@@ -58,6 +64,9 @@ const Post = ({ dispatch, post, index }) => {
 
   const setReadPost = useSelector(state => state.simpleReducer.setReadPost);
   const SetDismissedPost = useSelector(state => state.simpleReducer.dismissedPost);
+  const addDefaultSrc = (e) => {
+    e.target.src = 'https://b.thumbs.redditmedia.com/N23Zz0q7Dv8hQPOf3ajVZoq4IOpp5jCN_KTo29RyYXM.jpg';
+  }
   
   return (
     <ListGroup > { !SetDismissedPost.includes(post.id) &&
@@ -68,11 +77,11 @@ const Post = ({ dispatch, post, index }) => {
         <Col md="4">{convertDate(post.created_utc)} hours ago</Col>
       </Row>
       <Row>
-        <Col sm="12" md="4" >{post.thumbnail && <img src={post.thumbnail} width="100px" height="100px" alt=""/>}</Col>
+        <Col sm="12" md="4" >{post.thumbnail && <img src={post.thumbnail} onError={addDefaultSrc} width="100px" height="100px" alt=""/>}</Col>
         <Col sm="12" md="8" className="title-content">
-          <div onClick={setSelectedPostAction} onKeyDown={setSelectedPostAction} >{post.title}</div> <br/>
+          <div className="title_pointer" onClick={setSelectedPostAction} onKeyDown={setSelectedPostAction} >{post.title}</div> <br/>
         </Col>
-      </Row>
+       </Row>
       <Row>        
       <Col sm="6" md="6">  
         <br/>

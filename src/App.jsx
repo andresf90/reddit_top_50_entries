@@ -22,19 +22,13 @@ import './App.scss';
  * @description App.js  Home page
  */
 
-// const store = configureStore();
 const App = () => {
 
   const [toggled, setToggled] = useState(true);
   const [hasBackground, setHasBackground] = useState(true);
 
-
-  
-
   let style = toggled ? "toggled" : "";
   style += hasBackground ? " sidebar-bg" : "";
-  // console.log('fullPost',fullPost)
-  // console.log('dispatch',dispatch)
 
   return (
 
@@ -44,10 +38,8 @@ const App = () => {
           <MainContent/>
         </div>
       </GlobalAppContext.Provider>
-
   );
 };
-
 
 export default App;
 
