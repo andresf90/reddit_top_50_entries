@@ -11,14 +11,14 @@
 import { connect } from "react-redux";
 
 // Redux
-// import { setSelectedPost, deleteListPost } from "../../actions/simpleActions";
+// import { setFullPost } from "../../actions/simpleActions";
 
 // View
-import Post from './view';
+import SideBar from './view';
 
 /* const mapDispatchToProps = (dispatch) => ({
-  setSelectedPost: (selectedPost) => dispatch(setSelectedPost(selectedPost)),
-  deleteListPost: (deletePost) => dispatch(deleteListPost(deletePost)),
+  setFullPost: (fullPost) => dispatch(setFullPost(fullPost))
 }); */
 
-export default connect(null, null)(Post);
+export default connect(null, null)(SideBar);
+

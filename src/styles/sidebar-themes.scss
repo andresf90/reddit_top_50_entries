@@ -225,6 +225,11 @@
 
 .color_bottom{
     color: orange!important;
+    cursor: pointer!important;
+}
+
+.color_comments{
+    color: orange!important;
 }
 
 .line_height_author{
@@ -244,4 +249,9 @@
 
 .searchBarName{
     color: white!important;
+}
+
+.indicator_read{
+    color: blue!important;
+    width: 5%!important;
 }

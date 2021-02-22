@@ -12,6 +12,7 @@ import React , { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
 
 // components
 import GlobalAppContext from '../../context';
@@ -23,25 +24,28 @@ import GlobalAppContext from '../../context';
  */
 
 
-const IndexContent = ({ message }) => {
-    const { toggled , setToggled } = useContext(GlobalAppContext);
 
-    return (
+const IndexContent = () => {
+    const { toggled , setToggled } = useContext(GlobalAppContext);
+    const selectedPost = useSelector(state => state.simpleReducer.fullPost);
+   //  const dismissPost = useSelector(state => state.simpleReducer.dismissPost);
+    
+    return ( 
         <div className="container-fluid">
             <div className="row">
                 <div className="form-group col-md-12 padding_menu">                
-                <FontAwesomeIcon icon={faBars} onClick={() =>setToggled(!toggled)} />
+                <FontAwesomeIcon icon={faBars} class="menu_toggle" onClick={() =>setToggled(!toggled)} />
                 </div>
                 <div className="form-group col-md-12">
                     <br/>
-                    <h2>{message.author} </h2>
+                    <h2>{selectedPost && selectedPost.author} </h2>
                     <hr />
                     <br/>
-                    {message.thumbnail && <img src={message.thumbnail} alt=""/>}
+                    <div className="text-center">{selectedPost && selectedPost.thumbnail && <img src={selectedPost.thumbnail} alt=""/>}</div>
                     <br/>
                     <br/>
                     <br/>
-                    <p>{message.title}</p>
+                    <p>{selectedPost &&  selectedPost.title}</p>
                     <hr /> 
                 </div>
             </div>
@@ -54,11 +58,13 @@ IndexContent.propTypes = {
         author: PropTypes.string,
         thumbnail: PropTypes.string,
         title: PropTypes.string,
-    }),
+    })
+  
 }
 
 IndexContent.defaultProps = {
     message: {}
 }
+
 
 export default IndexContent;

@@ -11,16 +11,23 @@
 import React from 'react'
 import _ from 'lodash';
 import { Scrollbars } from 'react-custom-scrollbars';
-// import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
+import PropTypes from 'prop-types';
+import { connect } from "react-redux";
+// import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar'; 
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 
 // Components
-import InputSearch from '../../components/InputSearch';
-import Posts from '../../components/Posts';
+import InputSearch from '../InputSearch';
+import Posts from '../Posts';
+
+// Redux
+import { setFullPost } from "../../actions/simpleActions";
 
 // Styles
 import 'react-pro-sidebar/dist/css/styles.css';
+
+
 
 /**
  * @file indexContent.js
@@ -28,11 +35,13 @@ import 'react-pro-sidebar/dist/css/styles.css';
  * @description Main Content Post From Reddit
  */
 
-class SideBar extends React.Component {
+
+ class SideBar extends React.Component {
   constructor(props) {
     super(props);
     this.url = 'https://www.reddit.com/r/';
     this.sorts = ['top'];
+
 
     this.state = {
       currentSubreddit: 'design',
@@ -146,27 +155,51 @@ class SideBar extends React.Component {
     const { files } = this.state;
     const searchSubreddit = _.debounce((term) => {this.searchSubreddit(term)}, 600);
 
-    return (
-      <nav id="sidebar" className="sidebar-wrapper">
-          <div className="sidebar-content">
-              <Scrollbars>      
-                  <div className="sidebar-item sidebar-search">
-                      <div>
-                          <div className="input-group">
-                            <InputSearch onSearchTermChange={term => searchSubreddit(term)}/>
-                          </div>
-                      </div>
-                  </div>
-                  <div className=" sidebar-item sidebar-menu">
-                        <ul>
-                        <Posts posts={files} />
-                      </ul>
-                  </div>
-              </Scrollbars>
-          </div>
-      </nav>
+     return (
+        <VisibleSideBar files={files} searchSubreddit={searchSubreddit}/>
     );
   }
 }
 
-export default SideBar
+
+
+
+const VisibleSideBar = ({ setFullPost, files, searchSubreddit }) => {
+ 
+  console.log('fullPost',setFullPost)   
+
+  return (
+    <nav id="sidebar" className="sidebar-wrapper">
+    <div className="sidebar-content">
+        <Scrollbars>      
+            <div className="sidebar-item sidebar-search">
+                <div>
+                    <div className="input-group">
+                      <InputSearch onSearchTermChange={term => searchSubreddit(term)}/>
+                    </div>
+                </div>
+            </div>
+            <div className=" sidebar-item sidebar-menu">
+                  <ul>
+                  <Posts posts={files} />
+                </ul>
+            </div>
+        </Scrollbars>
+    </div>
+    </nav>
+  )
+  
+  }
+
+const mapStateToProps = (state) => ({
+  fullPost: state.simpleReducer.fullPost
+});
+
+VisibleSideBar.propTypes = {
+  setFullPost: PropTypes.func.isRequired,
+  files: PropTypes.func.isRequired,
+  searchSubreddit: PropTypes.func.isRequired
+};
+
+export default connect(mapStateToProps, null)(SideBar);
+

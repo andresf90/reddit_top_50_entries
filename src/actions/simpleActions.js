@@ -21,5 +21,44 @@ export const simpleAction = () => (dispatch) => {
       payload: selectedPost,
     });
   };
+
+  export const deleteListPost= (deletePost) => (dispatch) => {
+    dispatch({
+      type: "DELETE_LIST_POST",
+      payload: deletePost,
+    });
+  };
+  export const setFullPost= (fullPost) => (dispatch) => {
+    dispatch({
+      type: "SET_FULL_POST",
+      payload: fullPost,
+    });
+  };
+  export const setSideBarPost= (sideBarPost) => (dispatch) => {
+    dispatch({
+      type: "SIDE_BAR_POST",
+      payload: sideBarPost,
+    });
+  };
+
+  export const SetDismissPost= (dismissPost) => (dispatch) => {
+    dispatch({
+      type: "SET_DISMISS_POST",
+      payload: dismissPost,
+    });
+  };
+
+  export const SetReadPost= (setReadPost) => (dispatch) => {
+    dispatch({
+      type: "SET_READ_POST",
+      payload: setReadPost,
+    });
+  };
+
+  export const SetDismissedPost= (dismissedPost) => (dispatch) => {
+    dispatch({
+      type: "SET_DISMISSED_POST",
+      payload: dismissedPost,
+    });
+  };
   
- 

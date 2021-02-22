@@ -19,18 +19,20 @@ import IndexContent from './IndexContent';
  * @description Main Content Post From Reddit
  */
 
-const MainContent = ({ selectedPost }) => (
+const MainContent = ({ selectedPost, fullPost }) => (
   <main className="page-content">
-    <IndexContent message={selectedPost} />            
+    <IndexContent message={selectedPost} postfull={fullPost} />            
   </main>
 )
 
 const mapStateToProps = (state) => ({
-  selectedPost: state.simpleReducer.selectedPost
+  selectedPost: state.simpleReducer.selectedPost,
+  fullPost: state.simpleReducer.fullPost
 });
 
 MainContent.propTypes = {
-  selectedPost: PropTypes.func.isRequired
+  selectedPost: PropTypes.func.isRequired,
+  fullPost: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, null)(MainContent);

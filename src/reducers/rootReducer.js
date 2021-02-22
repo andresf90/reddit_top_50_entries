@@ -9,8 +9,24 @@
  */
 
 import { combineReducers } from "redux";
+import { persistReducer } from "redux-persist";
+import storage from 'redux-persist/lib/storage'
 import simpleReducer from "./simpleReducer";
 
-export default combineReducers({
+const persistConfig = {
+
+  key: 'root',
+  storage,
+  whitelist: [simpleReducer]
+
+}
+
+const rootReducer = combineReducers({
   simpleReducer,
 });
+
+export default persistReducer(persistConfig, rootReducer);
+
+/* export default combineReducers({
+  simpleReducer,
+}); */

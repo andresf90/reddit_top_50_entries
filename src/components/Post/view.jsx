@@ -13,52 +13,87 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { ListGroup, Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle, faCircle } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
 
-const Post = ({ setSelectedPost, post }) => {
+const Post = ({ dispatch, post, index }) => {
 
-  const setSelectedPostAction = () => {  
-    setSelectedPost(post);   
+  const updatePost = (data) => ({
+    type: "SET_FULL_POST",
+    fullPost: data,
+  })
+
+  const deleteIndex = (data) => ({
+    type: "SET_DISMISS_POST",
+    dismissPost: data,
+  }) 
+
+  const readPost = (data) => ({
+    type: "SET_READ_POST",
+    setReadPost: data,
+  }) 
+
+  const dismissedPost = (data) => ({
+    type: "SET_DISMISSED_POST",
+    dismissedPost: data,
+  }) 
+
+  const setSelectedPostAction = () => { 
+    dispatch(updatePost(post));  
+    dispatch(readPost(post.id));
   };
 
+  const convertDate = (utcDate) =>{
+    const dateCreated = new Date(utcDate * 1000);
+    const dateNow = new Date();
+    const hours = Math.abs(dateCreated - dateNow) / 36e5;
+
+    return Math.round(hours,0);
+  };
+
+  const dismissPost = () => {    
+    dispatch(deleteIndex(index));
+    dispatch(dismissedPost(post.id));
+  }; 
+
+  const setReadPost = useSelector(state => state.simpleReducer.setReadPost);
+  const SetDismissedPost = useSelector(state => state.simpleReducer.dismissedPost);
+  
   return (
-    <ListGroup id={post.id}>
-    <ListGroup.Item>
+    <ListGroup > { !SetDismissedPost.includes(post.id) &&
+    <ListGroup.Item as="li" >
     <Container>
       <Row>
-        <Col md="8"><h5 className="text-capitalize line_height_author">{post.author}</h5></Col>
-        <Col md="4">{post.created_utc}</Col>
+        <Col md="8"><h5 className="text-capitalize line_height_author">{ !setReadPost.includes(post.id)  && <FontAwesomeIcon className="indicator_read" icon={faCircle} />} {post.author}</h5></Col>
+        <Col md="4">{convertDate(post.created_utc)} hours ago</Col>
       </Row>
       <Row>
-        <Col sm="12" md="4">{post.thumbnail && <img src={post.thumbnail} width="100px" height="100px" alt=""/>}</Col>
-        <Col sm="12" md="8">
-          <div onClick={setSelectedPostAction} onKeyDown={setSelectedPostAction} className="text-justify">{post.title}</div> <br/>
+        <Col sm="12" md="4" >{post.thumbnail && <img src={post.thumbnail} width="100px" height="100px" alt=""/>}</Col>
+        <Col sm="12" md="8" className="title-content">
+          <div onClick={setSelectedPostAction} onKeyDown={setSelectedPostAction} >{post.title}</div> <br/>
         </Col>
       </Row>
-      <Row>
+      <Row>        
       <Col sm="6" md="6">  
-        <a className="color_bottom">
-          <FontAwesomeIcon icon={faTimesCircle} /> Dismiss post
-        </a>
+        <br/>
+        <div className="color_bottom" onClick={dismissPost} onKeyDown={dismissPost} ><FontAwesomeIcon icon={faTimesCircle} /> <span style={{color:'white'}}>Dismiss post</span></div>
        </Col>
       <Col sm="6" md="6">
-    
-              <p className="color_bottom">{post.num_comments} Comments</p>
-      </Col>
-      
-      </Row> 
-     
-    </Container>
-      
-    
+        <br/>
+        <span className="color_comments">{post.num_comments} Comments</span>
+      </Col>      
+      </Row>      
+    </Container>    
       </ListGroup.Item>
+    }
     </ListGroup>
   );
 };
 
 Post.propTypes = {
-  setSelectedPost: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
   post: PropTypes.arrayOf(PropTypes.array).isRequired,
+  index: PropTypes.string.isRequired,
 };
 
 export default Post;

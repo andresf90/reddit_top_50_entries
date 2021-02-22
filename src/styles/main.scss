@@ -199,3 +199,36 @@ body {
 .padding_menu {
     padding-top: 10px;
 }
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  
+.title-content {
+    border-radius: 8px;
+    padding: 7px;
+    height: 100px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+}
+
+.menu_toggle{
+    cursor: pointer;
+    width: 2%;
+}

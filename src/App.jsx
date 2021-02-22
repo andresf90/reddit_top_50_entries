@@ -9,9 +9,7 @@
  */
 
 import React, { useState } from 'react';
-import { Provider } from "react-redux";
-import configureStore from "./store";
-import SideBar from './layout/sideBar/sideBar';
+import SideBar from './components/sideBar';
 import MainContent from './layout/main/MainContent';
 import GlobalAppContext from './context';
 
@@ -24,25 +22,34 @@ import './App.scss';
  * @description App.js  Home page
  */
 
-const store = configureStore();
+// const store = configureStore();
 const App = () => {
 
   const [toggled, setToggled] = useState(true);
   const [hasBackground, setHasBackground] = useState(true);
 
+
+  
+
   let style = toggled ? "toggled" : "";
   style += hasBackground ? " sidebar-bg" : "";
+  // console.log('fullPost',fullPost)
+  // console.log('dispatch',dispatch)
 
   return (
-    <Provider store={store}>
+
       <GlobalAppContext.Provider value={{toggled, setToggled, hasBackground, setHasBackground}}>
         <div className={`page-wrapper default-theme bg1 ${style}`}>
-          <SideBar />
+          <SideBar/>
           <MainContent/>
         </div>
       </GlobalAppContext.Provider>
-    </Provider>
+
   );
 };
 
+
 export default App;
+
+
+
