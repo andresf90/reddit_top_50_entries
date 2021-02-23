@@ -8,10 +8,13 @@
  * All Rights Reserved.
  */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import IndexContent from './IndexContent';  
+
+// components
+import GlobalAppContext from '../../context';
 
 /**
  * @file indexContent.js
@@ -19,11 +22,15 @@ import IndexContent from './IndexContent';
  * @description Main Content Post From Reddit
  */
 
-const MainContent = ({ selectedPost, fullPost }) => (
-  <main className="page-content">
-    <IndexContent message={selectedPost} postfull={fullPost} />            
-  </main>
-)
+
+
+const MainContent = ({ selectedPost, fullPost }) => {
+  const { toggled , setToggled } = useContext(GlobalAppContext);
+ return( <main className="page-content">
+    <IndexContent message={selectedPost} postfull={fullPost} />    
+    <div className="overlay" onClick={() =>setToggled(!toggled)}  onKeyDown={() =>setToggled(!toggled)}/>       
+  </main>);
+}
 
 const mapStateToProps = (state) => ({
   selectedPost: state.simpleReducer.selectedPost,

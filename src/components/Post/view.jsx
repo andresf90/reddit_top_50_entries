@@ -77,9 +77,9 @@ const Post = ({ dispatch, post, index }) => {
         <Col md="4">{convertDate(post.created_utc)} hours ago</Col>
       </Row>
       <Row>
-        <Col sm="12" md="4" >{post.thumbnail && <img src={post.thumbnail} onError={addDefaultSrc} width="100px" height="100px" alt=""/>}</Col>
-        <Col sm="12" md="8" className="title-content">
-          <div className="title_pointer" onClick={setSelectedPostAction} onKeyDown={setSelectedPostAction} >{post.title}</div> <br/>
+        <Col sm="12" md="4" onClick={setSelectedPostAction} onKeyDown={setSelectedPostAction}>{post.thumbnail && <img src={post.thumbnail} onError={addDefaultSrc} width="100px" height="100px" alt=""/>}</Col>
+        <Col sm="12" md="8" className="title-content" onClick={setSelectedPostAction} onKeyDown={setSelectedPostAction}>
+          <div className="title_pointer"  >{post.title}</div> <br/>
         </Col>
        </Row>
       <Row>        
